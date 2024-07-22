@@ -2,16 +2,15 @@ class Solution {
 public:
     vector<string> sortPeople(vector<string>& names, vector<int>& heights) {
         
-       unordered_map<int, string> mapping;
+       map<int, string> mapping;
           int n = names.size();
         for (int i = 0; i < n; ++i) {
             mapping[heights[i]] = names[i];
         }
 
-        sort(heights.rbegin(), heights.rend());
-
+        sort(heights.begin(), heights.end());
         for (int i = 0; i < n; ++i) {
-            names[i] = mapping[heights[i]];
+            names[i] = mapping[heights[n-i-1]];
         }
 
         return names;
