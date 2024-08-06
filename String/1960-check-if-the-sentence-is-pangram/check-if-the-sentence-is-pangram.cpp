@@ -1,12 +1,14 @@
 class Solution {
 public:
     bool checkIfPangram(string sentence) {
-        unordered_map<char,int>mpp;
-        for(int i=0;i<sentence.size();i++){
-            mpp[sentence[i]]++;
+        int arr[26]={0};
+        for(int i=0;i<sentence.length();i++)
+        {
+            arr[sentence[i]-97]++;
         }
-        if(mpp.size()!=26){
-          return false;
+        for(int i=0;i<26;i++)
+        {
+            if(arr[i]==0) return false;
         }
         return true;
     }
