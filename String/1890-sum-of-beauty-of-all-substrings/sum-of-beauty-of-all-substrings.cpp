@@ -1,20 +1,25 @@
 class Solution {
 public:
+    int ans = 0;
     int beautySum(string s) {
-        int n=s.size();
-        int res=0;
-        for(int i=0;i<n;i++){
-            map<char,int>mpp;
-            multiset<int>st;
-            for(int j=i;j<n;j++){
-                if(mpp.find(s[j])!=mpp.end()){
-                    st.erase(st.find(mpp[s[j]]));
+
+        for (int i = 0; i < s.length(); i++) {
+            map<char, int> mp;
+            for (int j = i; j < s.length(); j++) {
+                // counting the frequency of each character
+                mp[s[j]]++;
+
+                int leastFrequent = INT_MAX;
+                int mostFrequent = INT_MIN;
+                // Finding most frequent and least frequent chracter
+                for (auto it : mp) {
+                    leastFrequent = min(leastFrequent, it.second);
+                    mostFrequent = max(mostFrequent, it.second);
                 }
-                 mpp[s[j]]++;
-                 st.insert(mpp[s[j]]);
-                 res+=*st.rbegin()-*st.begin();
-                }      
+                ans += mostFrequent - leastFrequent;
+            }
         }
-     return res;
+
+        return ans;
     }
 };
