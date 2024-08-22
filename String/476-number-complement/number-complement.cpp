@@ -1,10 +1,18 @@
 class Solution {
 public:
+
     int findComplement(int num) {
-    int x=(int)(log2(num))+1;
-    for(int i=0;i<x;i++){
-        num=num^(1<<i);
-    }
-    return num;
+        int m=num;
+        int mask=0;
+        if(num==0){
+            return 1;
+        }
+        while(m!=0){
+            mask=(mask<<1) | 1;
+            m=m >> 1;
+        }
+        int ans= (~num) & mask;
+        return ans;
+        
     }
 };
