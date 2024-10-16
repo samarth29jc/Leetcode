@@ -1,23 +1,21 @@
 class Solution {
 public:
     int lengthOfLongestSubstring(string s) {
-         int len=0;
+        vector<char>vpp;
+        int maxx=0;
         for(int i=0;i<s.size();i++){
-            string z="";
-           
-        
             for(int j=i;j<s.size();j++){
-                 z=z+s[j];
-              if(z.find(s[j+1])!=string::npos||z.size()==s.size()){
-                len= max(len,static_cast<int>(z.size()));
-               
-               break;
-              }
-                     len= max(len,static_cast<int>(z.size()));
-
+               if(find(vpp.begin(),vpp.end(),s[j])==vpp.end()){
+                 vpp.push_back(s[j]);
+               }
+               else{
+                maxx=max(maxx,static_cast<int>(vpp.size()));
+                vpp.clear();
+                break;
+               }
             }
         }
-               
-        return len;
+        maxx= max(maxx, (int)vpp.size());
+        return maxx;
     }
 };
