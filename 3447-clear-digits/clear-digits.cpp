@@ -1,17 +1,21 @@
+
 class Solution {
 public:
-    string clearDigits(string s) {
-        int i=0;
-       while(i<s.size()) {
-       if( i>0 && isdigit(s[i])){
-            s.erase(i,1);
-            if(isalpha(s[i-1])){
-                s.erase(i-1,1);
-                i--;
+    std::string clearDigits(std::string s) {
+        int i = 0;
+        while (i < s.size()) {
+            if (isdigit(s[i])) {
+                s.erase(i, 1); // Remove digit
+                if (i > 0 && isalpha(s[i - 1])) {  
+                    s.erase(i - 1, 1); // Remove previous character if it's a letter
+                    i--; // Move back since the previous character was removed
+                }
+            } else {
+                i++;  // Only move forward if no deletion occurs
             }
         }
-       else{i++;}
-       }
-       return s;
+        return s;
     }
 };
+
+
